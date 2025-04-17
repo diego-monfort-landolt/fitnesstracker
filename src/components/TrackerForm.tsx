@@ -64,7 +64,7 @@ export const TrackerForm: React.FC<Props> = ({ onAdd }) => {
       </div>
     </div>
 
-    <button type="submit">Add Entry</button>
+    <button type="submit" className="btn-submit">Add Entry</button>
   </form>
 );
 };

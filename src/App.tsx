@@ -1,4 +1,3 @@
-// src/App.tsx
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { Entry } from "./types/tracker";
 import { TrackerForm } from "./components/TrackerForm";
@@ -25,5 +24,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
