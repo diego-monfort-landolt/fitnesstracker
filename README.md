@@ -1,54 +1,71 @@
-# React + TypeScript + Vite
+# 🏋️‍♂️ Fitness Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ein einfacher, moderner Fitness Tracker, gebaut mit **React + Vite + TypeScript**, um deine täglichen Aktivitäten zu tracken:
 
-Currently, two official plugins are available:
+- 💪 Workouts (Minuten)
+- 🔥 Kalorienverbrauch
+- 😴 Schlafdauer (Stunden)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 📊 **Interaktive Diagramme** mit Chart.js
+- 🌙 **Dark Mode** Toggle (mit Icon)
+- 📲 **PWA (offlinefähig)** via Vite Plugin
+- 🔔 **Benachrichtigung**, wenn du dein Workout-Ziel erreichst (z. B. 30min)
+- 💾 **Datenpersistenz** via `localStorage`
+- 🎯 **Tägliche Ziele** in der Übersicht
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🛠️ Tech Stack
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- [React](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Chart.js](https://www.chartjs.org/) + `react-chartjs-2`
+- [Vite PWA Plugin](https://vite-pwa-org.netlify.app/)
+- [React Icons](https://react-icons.github.io/react-icons/)
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+---
+
+## 📦 Installation
+
+```bash
+# Projekt klonen
+git clone https://github.com/diego-monfort-landolt/fitnesstracker.git
+cd fitnesstracker
+
+# Abhängigkeiten installieren
+npm install
+
+# Lokalen Dev-Server starten
+npm run dev
+📈 Diagramm-Vorschau
+Die Fortschrittsdiagramme zeigen:
+
+Workout-Zeit (grün)
+
+Kalorien (orange)
+
+Schlaf (blau)
+
+📍Daten werden automatisch gespeichert (localStorage).
+
+🌐 PWA Support
+Dieses Projekt ist als Progressive Web App (PWA) konfiguriert:
+
+vite-plugin-pwa inkludiert
+
+manifest.json wird automatisch generiert
+
+App kann auf Homescreen installiert werden
+
+🌓 Dark Mode
+Klick auf das 🌙 Icon oben rechts, um den Dark Mode zu aktivieren.
+
+🔔 Benachrichtigungen
+Wenn dein Workout-Ziel ≥ 30 Minuten erreicht ist, bekommst du eine Browser-Benachrichtigung.
+
+⚠️ Du musst beim ersten Besuch die Erlaubnis zum Senden von Benachrichtigungen erteilen
