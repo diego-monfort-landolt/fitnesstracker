@@ -4,6 +4,8 @@ import { TrackerForm } from "./components/TrackerForm";
 import { ChartSection } from "./components/ChartSection";
 import { DarkModeToggle } from "./components/DarkModeToggle";
 import { DailyGoals } from "./components/DailyGoals";
+import { DailyReview } from "./components/DailyReview";
+
 
 function App() {
   const [entries, setEntries] = useLocalStorage<Entry[]>("entries", []);
@@ -21,6 +23,8 @@ function App() {
       <TrackerForm onAdd={handleAdd} />
       <DailyGoals latest={entries[entries.length - 1]} />
       <ChartSection data={entries} />
+      <DailyReview latest={entries[entries.length - 1]} />
+
     </div>
   );
 }

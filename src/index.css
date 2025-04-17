@@ -30,12 +30,21 @@ body {
   border-radius: 8px;
   margin-bottom: 1rem;
 }
+ul {
+  list-style: none;
+  padding: 0;
+}
 
+li {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  border-left: 3px solid #007bff;
+  padding-left: 0.5rem;
+}
 label {
   display: block;
   margin-bottom: 0.5rem;
 }
-
 input[type="number"] {
   width: 100%;
   padding: 0.4rem;
