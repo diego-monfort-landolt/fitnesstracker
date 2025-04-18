@@ -78,5 +78,6 @@ Wenn dein Workout-Ziel ≥ 30 Minuten erreicht ist, bekommst du eine Browser-Ben
 In Planung ist ein Backend, um Daten auch geräteübergreifend zu speichern.
 Zusätzlich soll es eine VIP-Funktion geben, z. B. mit erweiterten Statistiken, Wochen-Reports oder personalisierten Zielen.
 
-.[!IMPORTANT] 🙌 Du willst mithelfen oder Ideen einbringen?
-Feel free to contribute oder schreib mir gerne direkt – jede Unterstützung ist willkommen!
+> 📣 **Mithelfen erwünscht!**  
+> Du hast Ideen oder willst dich beteiligen?  
+> **Feel free to contribute** oder schreib mir einfach direkt. Jede Unterstützung ist willkommen!
