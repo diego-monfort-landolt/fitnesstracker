@@ -35,7 +35,24 @@ const WorkoutTracker: React.FC = () => {
     const stored = JSON.parse(localStorage.getItem("workouts") || "[]");
     setPastWorkouts(stored.reverse());
   }, []);
-
+  // Ermittelt beim Laden der Komponente einmalig den aktuellen Standort des Nutzers.
+// Dieser wird verwendet, um die Karte initial zu zentrieren, noch bevor das Tracking gestartet wird.
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const currentPos: Position = [
+            pos.coords.latitude,
+            pos.coords.longitude,
+          ];
+          setPositions([currentPos]);
+        },
+        (err) => console.error("Fehler beim Standortabruf:", err),
+        { enableHighAccuracy: true }
+      );
+    }
+  }, []);
+  
   const startTracking = () => {
     setPositions([]);
     setDistance(0);
