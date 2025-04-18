@@ -71,3 +71,10 @@ Klick auf das 🌙 Icon oben rechts, um den Dark Mode zu aktivieren.
 Wenn dein Workout-Ziel ≥ 30 Minuten erreicht ist, bekommst du eine Browser-Benachrichtigung.
 
 ⚠️ Du musst beim ersten Besuch die Erlaubnis zum Senden von Benachrichtigungen erteilen
+
+🧩 Coming Soon: Backend + VIP-Funktion
+In Planung ist ein Backend, um Daten auch geräteübergreifend zu speichern.
+Zusätzlich soll es eine VIP-Funktion geben, z. B. mit erweiterten Statistiken, Wochen-Reports oder personalisierten Zielen.
+
+🙌 Du willst mithelfen oder Ideen einbringen?
+<b>Feel free</b> to contribute oder schreib mir gerne direkt – jede Unterstützung ist willkommen!
