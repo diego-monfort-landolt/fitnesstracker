@@ -6,6 +6,8 @@ Ein einfacher, moderner Fitness Tracker, gebaut mit **React + Vite + TypeScript*
 - 🔥 Kalorienverbrauch
 - 😴 Schlafdauer (Stunden)
 
+### https://diego-monfort-landolt.github.io/fitnesstracker/
+
 ---
 
 ## 🚀 Features
