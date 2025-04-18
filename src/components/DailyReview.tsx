@@ -8,16 +8,13 @@ interface Review {
   calories: number;
   sleepHours: number;
 }
-
 export const DailyReview = ({ latest }: { latest?: Entry }) => {
   const [reviews, setReviews] = useState<Review[]>(() => {
     const stored = localStorage.getItem("dailyReviews");
     return stored ? JSON.parse(stored) : [];
   });
-
   const handleSaveReview = () => {
     if (!latest) return;
-
     const review: Review = {
       id: Date.now(),
       date: new Date().toLocaleDateString(),
@@ -25,12 +22,10 @@ export const DailyReview = ({ latest }: { latest?: Entry }) => {
       calories: latest.calories,
       sleepHours: latest.sleepHours,
     };
-
     const updated = [...reviews, review];
     setReviews(updated);
     localStorage.setItem("dailyReviews", JSON.stringify(updated));
   };
-
   const handleClear = () => {
     setReviews([]);
     localStorage.removeItem("dailyReviews");

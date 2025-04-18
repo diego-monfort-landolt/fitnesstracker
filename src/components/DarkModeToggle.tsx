@@ -1,4 +1,3 @@
-// src/components/DarkModeToggle.tsx
 import { useState } from "react";
 import { FaMoon, FaSun } from "react-icons/fa";
 

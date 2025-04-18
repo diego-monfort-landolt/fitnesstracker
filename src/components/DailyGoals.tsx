@@ -3,7 +3,6 @@ import { Entry } from "../types/tracker";
 interface Props {
   latest?: Entry;
 }
-
 export const DailyGoals: React.FC<Props> = ({ latest }) => {
   if (!latest) return null;
   return (
