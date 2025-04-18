@@ -4,7 +4,6 @@ import { Entry } from "../types/tracker";
 interface Props {
   onAdd: (entry: Entry) => void;
 }
-
 export const TrackerForm: React.FC<Props> = ({ onAdd }) => {
   const [form, setForm] = useState<Entry>({
     date: new Date().toISOString().split("T")[0],
@@ -12,18 +11,15 @@ export const TrackerForm: React.FC<Props> = ({ onAdd }) => {
     calories: 0,
     sleepHours: 0,
   });
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm((f) => ({ ...f, [name]: Number(value) }));
   };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onAdd(form);
     setForm({ ...form, workoutMinutes: 0, calories: 0, sleepHours: 0 });
   };
-
   return (
   <form className="card" onSubmit={handleSubmit}>
     <div className="form-row">
