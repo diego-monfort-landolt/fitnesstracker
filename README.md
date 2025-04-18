@@ -77,4 +77,4 @@ In Planung ist ein Backend, um Daten auch geräteübergreifend zu speichern.
 Zusätzlich soll es eine VIP-Funktion geben, z. B. mit erweiterten Statistiken, Wochen-Reports oder personalisierten Zielen.
 
 🙌 Du willst mithelfen oder Ideen einbringen?
-<b>Feel free</b> to contribute oder schreib mir gerne direkt – jede Unterstützung ist willkommen!
+Feel free to contribute oder schreib mir gerne direkt – jede Unterstützung ist willkommen!
