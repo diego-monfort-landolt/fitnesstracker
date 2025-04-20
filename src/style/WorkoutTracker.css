@@ -67,6 +67,27 @@
   overflow: hidden;
   border: 1px solid #e5e7eb;
 }
+.workout-card {
+  position: relative;
+  padding-top: 1rem;
+}
+
+.delete-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #888;
+  transition: color 0.2s ease;
+}
+
+.delete-button:hover {
+  color: red;
+}
+
 
 /* Responsive: auf größeren Geräten nebeneinander */
 @media (min-width: 600px) {

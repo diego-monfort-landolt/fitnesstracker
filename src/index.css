@@ -162,6 +162,28 @@ body.dark .tracker-controls select {
 }
 
 
+.workout-card {
+  position: relative;
+  padding-top: 1rem;
+}
+
+.delete-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: red;
+  border-bottom: 1px solid red;
+  margin: 5px;
+  transition: color 0.2s ease;
+}
+
+.delete-button:hover {
+  color: red;
+}
 
 
 

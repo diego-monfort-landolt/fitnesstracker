@@ -7,6 +7,7 @@ import {
   Popup,
 } from "react-leaflet";
 import "../index.css";
+import { ChartSection } from "./ChartSection";
 
 type Position = [number, number];
 
@@ -30,21 +31,18 @@ const WorkoutTracker: React.FC = () => {
 
   const watchId = useRef<number | null>(null);
 
-  // Lade vergangene Workouts
+  // Laden der vergangenen Workouts aus LocalStorage
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("workouts") || "[]");
     setPastWorkouts(stored.reverse());
   }, []);
-  // Ermittelt beim Laden der Komponente einmalig den aktuellen Standort des Nutzers.
-// Dieser wird verwendet, um die Karte initial zu zentrieren, noch bevor das Tracking gestartet wird.
+
+  // Startposition holen und initialisieren
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (pos) => {
-          const currentPos: Position = [
-            pos.coords.latitude,
-            pos.coords.longitude,
-          ];
+          const currentPos: Position = [pos.coords.latitude, pos.coords.longitude];
           setPositions([currentPos]);
         },
         (err) => console.error("Fehler beim Standortabruf:", err),
@@ -52,7 +50,7 @@ const WorkoutTracker: React.FC = () => {
       );
     }
   }, []);
-  
+
   const startTracking = () => {
     setPositions([]);
     setDistance(0);
@@ -63,10 +61,7 @@ const WorkoutTracker: React.FC = () => {
     if (navigator.geolocation) {
       watchId.current = navigator.geolocation.watchPosition(
         (pos) => {
-          const newPos: Position = [
-            pos.coords.latitude,
-            pos.coords.longitude,
-          ];
+          const newPos: Position = [pos.coords.latitude, pos.coords.longitude];
           setPositions((prev) => {
             if (prev.length > 0) {
               const last = prev[prev.length - 1];
@@ -91,14 +86,13 @@ const WorkoutTracker: React.FC = () => {
       navigator.geolocation.clearWatch(watchId.current);
     }
 
-    // Speichern
     if (startTime && positions.length > 1) {
       const entry: WorkoutEntry = {
         id: Date.now(),
         mode,
         distance: distance.toFixed(2),
         duration: getDuration(startTime, end),
-        date: new Date().toLocaleDateString(),
+        date: new Date().toISOString(),
         path: positions,
       };
 
@@ -107,6 +101,12 @@ const WorkoutTracker: React.FC = () => {
       localStorage.setItem("workouts", JSON.stringify(updated));
       setPastWorkouts(updated);
     }
+  };
+
+  const deleteWorkout = (id: number) => {
+    const updated = pastWorkouts.filter((w) => w.id !== id);
+    setPastWorkouts(updated);
+    localStorage.setItem("workouts", JSON.stringify(updated));
   };
 
   const getDistance = (p1: Position, p2: Position): number => {
@@ -152,7 +152,10 @@ const WorkoutTracker: React.FC = () => {
 
       <div className="tracker-stats">
         <p>📏 Distanz: {distance.toFixed(2)} km</p>
-        <p>⏱️ Dauer: {endTime ? getDuration(startTime!, endTime) : isTracking ? "läuft..." : "-"}</p>
+        <p>
+          ⏱️ Dauer:{" "}
+          {endTime ? getDuration(startTime!, endTime) : isTracking ? "läuft..." : "-"}
+        </p>
       </div>
 
       <div className="tracker-map">
@@ -179,35 +182,61 @@ const WorkoutTracker: React.FC = () => {
         )}
       </div>
 
+      {/* Fortschritts-Chart - anpassen auf relevante Daten (km, Dauer, Datum) */}
+      {pastWorkouts.length > 0 && (
+        <ChartSection
+          data={pastWorkouts.map((w) => ({
+            date: new Date(w.date).toLocaleDateString(), // nur Datum
+            workoutMinutes: parseInt(w.duration), // Dauer in Minuten
+            calories: parseFloat(w.distance) * 60, // Beispiel: kcal pro km
+            distance: parseFloat(w.distance), // Distanz (km)
+            sleepHours: 0, // Default value for sleepHours
+          }))}
+        />
+      )}
+
+      {/* Neue Karten für vergangene Workouts */}
       {pastWorkouts.length > 0 && (
         <div className="card" style={{ marginTop: "2rem" }}>
-          <h3>🗂️ Vergangene Workouts</h3>
+          <h3>📌 Vergangene Workouts</h3>
           <ul className="workout-history">
             {pastWorkouts.map((w) => (
-              <li key={w.id} className="card small-card">
-                <div>
-                  <strong>{w.date}</strong> – {w.mode}
+              <li key={w.id} className="card small-card workout-card">
+                <button
+                  className="delete-button"
+                  onClick={() => deleteWorkout(w.id)}
+                  title="Workout löschen"
+                >
+                  ❌
+                </button>
+
+                <div className="workout-info">
+                  <strong>{new Date(w.date).toLocaleDateString()}</strong> – {w.mode}
+                  <div>📏 {w.distance} km | ⏱️ {w.duration}</div>
                 </div>
-                <div>📏 {w.distance} km | ⏱️ {w.duration}</div>
-                <div className="history-map">
-                  <MapContainer
-                    center={w.path[0]}
-                    zoom={14}
-                    style={{ height: "200px", width: "100%", marginTop: "0.5rem" }}
-                    scrollWheelZoom={false}
-                  >
-                    <TileLayer
-                      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
-                    <Polyline positions={w.path} color="blue" />
-                    <Marker position={w.path[0]}>
-                      <Popup>Start</Popup>
-                    </Marker>
-                    <Marker position={w.path[w.path.length - 1]}>
-                      <Popup>Ende</Popup>
-                    </Marker>
-                  </MapContainer>
-                </div>
+
+                <MapContainer
+                  center={w.path[0]}
+                  zoom={14}
+                  style={{
+                    height: "200px",
+                    width: "100%",
+                    marginTop: "0.5rem",
+                    borderRadius: "0.5rem",
+                  }}
+                  scrollWheelZoom={false}
+                >
+                  <TileLayer
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  />
+                  <Polyline positions={w.path} color="blue" />
+                  <Marker position={w.path[0]}>
+                    <Popup>Start</Popup>
+                  </Marker>
+                  <Marker position={w.path[w.path.length - 1]}>
+                    <Popup>Ende</Popup>
+                  </Marker>
+                </MapContainer>
               </li>
             ))}
           </ul>
