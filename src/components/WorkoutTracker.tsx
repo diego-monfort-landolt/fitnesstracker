@@ -7,7 +7,7 @@ import {
   Popup,
 } from "react-leaflet";
 import "../index.css";
-import { ChartSection } from "./ChartSection";
+// import { ChartSection } from "./ChartSection";
 
 type Position = [number, number];
 
@@ -183,7 +183,7 @@ const WorkoutTracker: React.FC = () => {
       </div>
 
       {/* Fortschritts-Chart - anpassen auf relevante Daten (km, Dauer, Datum) */}
-      {pastWorkouts.length > 0 && (
+      {/* {pastWorkouts.length > 0 && (
         <ChartSection
           data={pastWorkouts.map((w) => ({
             date: new Date(w.date).toLocaleDateString(), // nur Datum
@@ -193,7 +193,7 @@ const WorkoutTracker: React.FC = () => {
             sleepHours: 0, // Default value for sleepHours
           }))}
         />
-      )}
+      )} */}
 
       {/* Neue Karten für vergangene Workouts */}
       {pastWorkouts.length > 0 && (
