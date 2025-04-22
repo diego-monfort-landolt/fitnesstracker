@@ -8,9 +8,7 @@ import {
 } from "react-leaflet";
 import "../index.css";
 // import { ChartSection } from "./ChartSection";
-
 type Position = [number, number];
-
 interface WorkoutEntry {
   id: number;
   mode: string;
