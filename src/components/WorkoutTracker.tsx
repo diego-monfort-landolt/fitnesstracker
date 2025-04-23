@@ -93,20 +93,17 @@ const WorkoutTracker: React.FC = () => {
         date: new Date().toISOString(),
         path: positions,
       };
-
       const stored = JSON.parse(localStorage.getItem("workouts") || "[]");
       const updated = [entry, ...stored];
       localStorage.setItem("workouts", JSON.stringify(updated));
       setPastWorkouts(updated);
     }
   };
-
   const deleteWorkout = (id: number) => {
     const updated = pastWorkouts.filter((w) => w.id !== id);
     setPastWorkouts(updated);
     localStorage.setItem("workouts", JSON.stringify(updated));
   };
-
   const getDistance = (p1: Position, p2: Position): number => {
     const R = 6371;
     const dLat = deg2rad(p2[0] - p1[0]);
@@ -142,7 +139,6 @@ const WorkoutTracker: React.FC = () => {
             <option>Wandern</option>
           </select>
         </label>
-
         <button onClick={isTracking ? stopTracking : startTracking}>
           {isTracking ? "⏹️ Stop" : "▶️ Start"}
         </button>
